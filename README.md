@@ -6,7 +6,7 @@
 4. Run  - npm run start
 
 ## Workflow
-Install prettier extension
+Install prettier and ThunderClient extension for Vscode.
 When you are going to start with building a feature then follow these steps:
 1. git checkout master
 2. git checkout -b feature_name
