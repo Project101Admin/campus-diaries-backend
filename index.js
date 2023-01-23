@@ -8,10 +8,15 @@ app.get('/', (req, res) => {
 app.get('/users/:name', (req, res) => {  
   res.send(`User name is ${req.params.name}`);
 });
+// FUnction to get random book
+function getRandomBook() {
+  const books = ['The Alchemist', 'The Monk Who Sold His Ferrari', 'The Secret'];
+  return books[Math.floor(Math.random() * books.length)];
+}
 
 app.route('/book')
   .get((req, res) => {
-    res.send('Get a random book');
+    res.send(getRandomBook());
   })
   .post((req, res) => {
     res.send('Add a book');
