@@ -5,10 +5,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/users/:name', (req, res) => {  
+app.get('/users/:name', (req, res) => {
   res.send(`User name is ${req.params.name}`);
 });
-// FUnction to get random book
+
 function getRandomBook() {
   const books = ['The Alchemist', 'The Monk Who Sold His Ferrari', 'The Secret'];
   return books[Math.floor(Math.random() * books.length)];
