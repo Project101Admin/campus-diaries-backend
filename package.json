@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "campus-diaries-backend",
   "version": "1.0.0",
   "description": "Backend for a frontend application",
   "main": "index.js",
