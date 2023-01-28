@@ -1,3 +1,5 @@
-const validateSession = async () => {};
+const validateSession = async (req, res, next) => {
+  next();
+};
 
 module.exports = validateSession;
