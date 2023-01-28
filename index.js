@@ -1,4 +1,4 @@
-// Third party libararies
+// Third party libraries
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
