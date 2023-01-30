@@ -6,6 +6,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+dotenv.config({ path: './config.env' });
+
+require('./db/connection');
+
+const User = require('./model/userSchema');
+
 // Middlewares
 const validateUserSession = require('./middlewares/validate-session');
 const validateRequest = require('./middlewares/validate-request');
@@ -21,7 +27,7 @@ const testRouter = require('./routes/test');
 const { corsOptions } = require('./common/constants');
 
 app.use(cors(corsOptions));
-dotenv.config();
+// dotenv.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
