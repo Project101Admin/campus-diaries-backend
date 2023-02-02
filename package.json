@@ -26,6 +26,8 @@
     "fs": "0.0.1-security",
     "mongoose": "^6.9.0",
     "nodemon": "^2.0.20",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "swagger-ui-express": "^4.6.0",
+    "yamljs": "^0.3.0"
   }
 }
