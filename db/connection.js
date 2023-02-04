@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const DB = 'mongodb+srv://priyanshu:appyfizz@cluster0.4arzow6.mongodb.net/backend?retryWrites=true&w=majority';
+const DB = process.env.mongo_url;
 
 mongoose.set('strictQuery', false);
 
