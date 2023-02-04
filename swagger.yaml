@@ -1,4 +1,108 @@
-openapi: 1.0.0
-swagger: '2.0'
+openapi: 3.0.0
 info:
-  title: Experimenting with Swagger Docs
+  title: CAMPUS DIARIES BACKEND WEB APP
+  description: This is the web app for making life of college student easier
+  version: 1.0.0
+
+servers:
+  - url: '{protocol}://localhost:4000/api'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+    description: A Basic Home Route
+
+paths:
+  # AUTHENTICATION ROUTES
+  /register:
+    post:
+      summary: Registers a User in website.
+      responses:
+        '200':
+          description: User Registered
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: User already Registered
+  /login:
+    post:
+      summary: Login a User in website.
+      responses:
+        '200':
+          description: User Logged In
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # NOTICE BOARD ROUTES
+  /noticeBoard/generalUpdate:
+    get:
+      summary: Get General Updates of Notice Board
+      description: This all updates will be visible to all users and can only be updated by specific users.
+      responses:
+        '200':
+          description: An array of Updates of Notice Board
+  /noticeBoard/culturalAndTechnicalUpdates:
+    get:
+      summary: Get Cultural and Technical Updates of Notice Board
+      description: This all updates will be visible to all users and can only be updated by specific users.
+  /noticeBoard/jobNotifications:
+    get:
+      summary: Get Job and Internship Notifications
+      description: This all updates will be visible to all users and can only be Updated by Admins of Training and Placement Department.
+
+  # STUDENT ROUTES
+  /admin/addStudents:
+    post:
+      summary: Adds a List of Students or a Single Student.
+      description: This route will only be available to Admins of Department.
+      responses:
+        '200':
+          description: All Student or Single student will be inserted in DB.
+  /admin/deleteStudents:
+    delete:
+      summary: Deletes a List of Students or a Single Student.
+      description: This route will only be available to Admins of Department.
+      responses:
+        '200':
+          description: Student will be deleted in DB.
+  /student/editProfile:
+    put:
+      summary: Gets a Student Profile which needs to be updated.
+
+      # ! NOT YET DECIDED
+      description: This route will only be available to Admins of Department.
+      responses:
+        '200':
+          description: Student will be Updated in DB.
+
+  # TEACHER ROUTES
+  /admin/addTeachers:
+    post:
+      summary: Adds a List of Teachers or a Single Teacher.
+      description: This route will only be available to Admins of Department.
+      responses:
+        '200':
+          description: All Teachers or Single Teacher will be inserted in DB.
+  /admin/deleteTeacher:
+    delete:
+      summary: Deletes a List of Teachers or a Single Teacher.
+      description: This route will only be available to Admins of Department.
+      responses:
+        '200':
+          description: Teacher will be deleted in DB.
+
+  # GENERIC ROUTES
+  /curriculum/getNotesOrAssignment:
+    get:
+      parameters:
+        - in: query
+          name: type
+          schema:
+            type: string
+            enum: [ASSIGNMENT, NOTES]
