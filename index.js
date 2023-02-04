@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+require('./database/connection');
+
 // Middlewares
 const validateUserSession = require('./middlewares/validate-session');
 const validateRequest = require('./middlewares/validate-request');
