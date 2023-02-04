@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+dotenv.config({ path: './.env' });
+require('./database/connection');
+
 // Middlewares
 const validateUserSession = require('./middlewares/validate-session');
 const validateRequest = require('./middlewares/validate-request');
