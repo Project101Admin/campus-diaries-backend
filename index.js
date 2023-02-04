@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './.env' });
 
 require('./database/connection');
 
