@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 
 dotenv.config({ path: './config.env' });
 
-require('./db/connection');
+require('./database/connection');
 
 const User = require('./model/userSchema');
 
