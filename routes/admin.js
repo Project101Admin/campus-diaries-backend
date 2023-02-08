@@ -3,6 +3,8 @@ const router = express.Router();
 const multer = require('multer');
 const { csvArrayToJSON } = require('../common/utils');
 var csv = require('csvtojson');
+
+require('../database/connection');
 var userSchema = require('../model/userSchema');
 
 const storage = multer.memoryStorage();
@@ -44,6 +46,44 @@ router.post('/importUser', upload.single('file'), async (req, res) => {
       err,
     });
   }
+});
+
+router.post('/importManual', async (req, res) => {
+  const { name, phone, rollNo } = req.body;
+  if (!name || !phone || !rollNo) {
+    return res.status(422).json({ error: 'Plz filled the field properly' });
+  }
+
+  try {
+    const userExist = await userSchema.findOne({ rollNo: rollNo });
+    if (userExist) {
+      return res.status(422).json({ error: 'RollNo already Exist' });
+    }
+    const user = new userSchema({ name, phone, rollNo });
+    await user.save();
+    res.status(201).json({ message: 'user registered successfuly' });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.delete('/user/:id', async (req, res) => {
+  try {
+    const user = await userSchema.findByIdAndDelete(req.params.id);
+    if (!user) return res.status(404).send('User not found');
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+router.get('/user', (req, res) => {
+  userSchema.find({}, (err, users) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.send(users);
+  });
 });
 
 router.get('/', (req, res) => {
